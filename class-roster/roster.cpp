@@ -5,8 +5,7 @@
 
 
 // Constructor
-Roster::Roster(int rosterSize)
-{
+Roster::Roster(int rosterSize) {
 	lastIndex = -1; // Indicates an empty array
 	maxRosterSize = rosterSize;
 	classRosterArray = new Student* [maxRosterSize];
@@ -14,20 +13,17 @@ Roster::Roster(int rosterSize)
 
 
 // Return the Student object at a given index.
-Student* Roster::getStudentAtIndex(int index)
-{
+Student* Roster::getStudentAtIndex(int index) {
 	return classRosterArray[index];
 }
 
 
 // Extract student information from string and add Student to roster.
 // row is assumed to be a string of comma-separated values.
-void Roster::parseThenAdd(string row)
-{
+void Roster::parseThenAdd(string row) {
 	vector<string> result;
 	stringstream rowStream(row);
-	while (rowStream.good())
-	{
+	while (rowStream.good()) {
 		string subString;
 		getline(rowStream, subString, ',');
 		result.push_back(subString);  // Append value to result vector
@@ -50,16 +46,13 @@ void Roster::parseThenAdd(string row)
 
 	// Assume for this application that degreeProgramString 
 	// meets one of these conditions.
-	if (degreeProgramString == "SECURITY")
-	{
+	if (degreeProgramString == "SECURITY") {
 		degreeProgram = SECURITY;
 	}
-	else if (degreeProgramString == "NETWORK")
-	{
+	else if (degreeProgramString == "NETWORK") {
 		degreeProgram = NETWORK;
 	}
-	else if (degreeProgramString == "SOFTWARE")
-	{
+	else if (degreeProgramString == "SOFTWARE") {
 		degreeProgram = SOFTWARE;
 	}
 
@@ -71,8 +64,7 @@ void Roster::parseThenAdd(string row)
 // Append a Student object to the roster.
 void Roster::add(string studentID, string firstName, string lastName, 
 	string emailAddress, int age, int daysInCourse1, int daysInCourse2, 
-	int daysInCourse3, DegreeProgram degreeProgram)
-{
+	int daysInCourse3, DegreeProgram degreeProgram) {
 	lastIndex++;
 	classRosterArray[lastIndex] = new Student(studentID, firstName, lastName,
 		emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3,
@@ -81,8 +73,7 @@ void Roster::add(string studentID, string firstName, string lastName,
 
 
 // Call print function from each student instance per requirement E.3.c
-void Roster::printAll()
-{
+void Roster::printAll(){
 	for (int i = 0; i <= lastIndex; i++)
 	{
 		classRosterArray[i]->print();
@@ -92,14 +83,10 @@ void Roster::printAll()
 
 
 // Remove a student from the roster per requirement E.3.b
-void Roster::remove(string studentID)
-{
-
+void Roster::remove(string studentID) {
 	bool studentFound = false;
-	for (int i = 0; i <= lastIndex; i++)
-	{
-		if (classRosterArray[i]->getStudentID() == studentID)
-		{
+	for (int i = 0; i <= lastIndex; i++) {
+		if (classRosterArray[i]->getStudentID() == studentID) {
 			studentFound = true;
 			delete classRosterArray[i];
 			classRosterArray[i] = classRosterArray[lastIndex];
@@ -107,12 +94,10 @@ void Roster::remove(string studentID)
 		}
 	}
 
-	if (studentFound == false)
-	{
+	if (studentFound == false) {
 		cout << "Student with ID: " << studentID << " not found." << endl;
 	}
-	else
-	{
+	else {
 		cout << "Student " << studentID << " removed successfully.";
 		cout << endl  << endl;
 	}
@@ -120,27 +105,22 @@ void Roster::remove(string studentID)
 
 
 // Print emails that do not conform to requirement E.3.e
-void Roster::printInvalidEmails()
-{
+void Roster::printInvalidEmails() {
 	cout << "Invalid emails:" << endl;
 	string invalidEmailString;
 	string email;
 	
-	for (int i = 0; i <= lastIndex; i++)
-	{
+	for (int i = 0; i <= lastIndex; i++) {
 		email = classRosterArray[i]->getEmailAddress();
-		if (email.find('@') == string::npos)
-		{
+		if (email.find('@') == string::npos) {
 			invalidEmailString += email + "\n";
 			continue;
 		}
-		else if (email.find('.') == string::npos)
-		{
+		else if (email.find('.') == string::npos) {
 			invalidEmailString += email + "\n";
 			continue;
 		}
-		else if (email.find(' ') != string::npos)
-		{
+		else if (email.find(' ') != string::npos) {
 			invalidEmailString += email + "\n";
 		}
 	}
@@ -149,12 +129,9 @@ void Roster::printInvalidEmails()
 
 
 // Print student information by degree program per requirement E.3.f
-void Roster::printByDegreeProgram(DegreeProgram degreeProgram)
-{
-	for (int i = 0; i <= lastIndex; i++)
-	{
-		if (classRosterArray[i]->getDegreeProgram() == degreeProgram)
-		{
+void Roster::printByDegreeProgram(DegreeProgram degreeProgram) {
+	for (int i = 0; i <= lastIndex; i++) {
+		if (classRosterArray[i]->getDegreeProgram() == degreeProgram) {
 			classRosterArray[i]->print();
 		}
 	}
@@ -163,14 +140,11 @@ void Roster::printByDegreeProgram(DegreeProgram degreeProgram)
 
 // Print the average number of days per course a student has left 
 // per requirement E.3.d
-void Roster::printAverageDaysInCourse(string studentID)
-{
+void Roster::printAverageDaysInCourse(string studentID) {
 	Student* student;
-	for (int i = 0; i <= lastIndex; i++)
-	{
+	for (int i = 0; i <= lastIndex; i++) {
 		student = classRosterArray[i];
-		if (student->getStudentID() == studentID)
-		{
+		if (student->getStudentID() == studentID) {
 			const int* days = student->getDaysInCourses();
 			cout << "The average number of days left in each course for ";
 			cout << "student " << studentID << " is ";
@@ -182,10 +156,8 @@ void Roster::printAverageDaysInCourse(string studentID)
 
 // Implement destructor to release dynamically allocated memory per
 // requirement F.5
-Roster::~Roster()
-{
-	for (int i = 0; i <= lastIndex; i++)
-	{
+Roster::~Roster() {
+	for (int i = 0; i <= lastIndex; i++) {
 		delete classRosterArray[i];
 	}
 	delete classRosterArray;

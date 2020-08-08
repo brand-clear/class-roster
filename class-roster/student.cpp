@@ -8,8 +8,7 @@ using namespace std;
 // Construct the Student object per requirement D.2.d
 Student::Student(string studentID, string firstName, string lastName, 
 	string emailAddress, int age, int daysInCourse1, int daysInCourse2, 
-	int daysInCourse3, DegreeProgram degreeProgram) 
-{
+	int daysInCourse3, DegreeProgram degreeProgram) {
 	// Map parameters to member variables
 	setStudentID(studentID);
 	setFirstName(firstName);
@@ -23,8 +22,7 @@ Student::Student(string studentID, string firstName, string lastName,
 
 // Assign inputs to member array per requirement D.2.b
 void Student::setDaysInCourses(int daysInCourse1, int daysInCourse2, 
-	int daysInCourse3)
-{
+	int daysInCourse3) {
 	daysInCourses[0] = daysInCourse1;
 	daysInCourses[1] = daysInCourse2;
 	daysInCourses[2] = daysInCourse3;
@@ -32,8 +30,7 @@ void Student::setDaysInCourses(int daysInCourse1, int daysInCourse2,
 
 
 // Print specific student data to standard output per requirement D.2.e
-void Student::print()
-{
+void Student::print() {
 	/* 
 	Transform degreeProgram text to have only the first letter
 	capitalized per requirement E.3.c.

@@ -3,8 +3,7 @@
 using namespace std;
 
 
-class Student
-{
+class Student {
 private:
 	// Create member variables per requirement D.1
 	static const int COURSE_COUNT = 3;

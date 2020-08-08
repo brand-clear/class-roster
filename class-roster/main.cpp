@@ -26,8 +26,7 @@ int main() {
 	// Create an instance of roster named classRoster per requirement F.2
 	Roster * classRoster = new Roster(studentCount);
 
-	for (int i = 0; i < studentCount; i++)
-	{
+	for (int i = 0; i < studentCount; i++) {
 		// Add each student to classRoster per requirement F.3
 		classRoster->parseThenAdd(studentData[i]);
 	}
@@ -39,8 +38,7 @@ int main() {
 	cout << endl;
 
 	string tempID;
-	for (int i = 0; i < 5; i++)
-	{
+	for (int i = 0; i < 5; i++)	{
 		tempID = classRoster->getStudentAtIndex(i)->getStudentID();
 		classRoster->printAverageDaysInCourse(tempID);
 	}

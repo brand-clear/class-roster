@@ -3,8 +3,7 @@
 using namespace std;
 
 
-class Roster
-{
+class Roster {
 private:
 	int lastIndex;
 	int maxRosterSize;
