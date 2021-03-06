@@ -8,11 +8,6 @@ using namespace std;
 
 int main() {
 
-	// Satisfy F.1 requirement
-	cout << "***Course: Scripting & Programming - Applications" << endl;
-	cout << "***Language Used: C++" << endl;
-	cout << "***Student: Brandon McCleary 001453149" << endl << endl;
-
 	// Initialize studentData Table as array
 	const int studentCount = 5;
 	const string studentData[studentCount] = {
